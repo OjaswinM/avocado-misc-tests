@@ -240,6 +240,7 @@ class Xfstests(Test):
         self.mkfs_opt = self.params.get('mkfs_opt', default='')
         self.mount_opt = self.params.get('mount_opt', default='')
         self.logdev_opt = self.params.get('logdev_opt', default='')
+        self.user_outputdir = self.params.get('outputdir', default='')
 
         # If there is an existing results directory then just clean that up before running the test
         if os.path.exists(f"{self.teststmpdir}/results"):
@@ -466,15 +467,17 @@ class Xfstests(Test):
     def tearDown(self):
 
         srcdir = f"{self.teststmpdir}/results"
-        if (os.path.exists(srcdir) and os.path.exists(self.outputdir)):
-            new_outputdir = os.path.join(self.outputdir,
+        test_outputdir = self.user_outputdir if self.user_outputdir else self.outputdir
+
+        if (os.path.exists(srcdir) and os.path.exists(test_outputdir)):
+            new_outputdir = os.path.join(test_outputdir,
                                          os.path.basename(srcdir))
             shutil.copytree(srcdir, new_outputdir)
 
         job_dir = os.path.dirname(os.path.dirname(self.logdir))
         self.job_id = os.path.basename(job_dir)
         self.log.debug(" Job ID: %s, logdir: %s, srcdir: %s, outputdir: %s: " %
-                       (self.job_id, self.logdir, srcdir, self.outputdir))
+                       (self.job_id, self.logdir, srcdir, test_outputdir))
 
         user_exits = 0
         if not (process.system('id fsgqa', sudo=True, ignore_status=True)):
