@@ -15,4 +15,4 @@ fs_type: !mux
         args: '-R xunit generic/001'
         mkfs_opt: '-b 4096'
         mount_opt: '-o block_validity'
-        outputdir: '/mnt'
+        outputdir: '/mnt/testdir'
