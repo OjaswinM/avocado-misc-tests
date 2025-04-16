@@ -12,6 +12,7 @@ loop_type: !mux
 fs_type: !mux
     fs_xfs_4k:
         fs: 'xfs'
-        args: '-R xunit generic/001'
+        args: '-R xunit generic/001 xfs/001'
         mkfs_opt: '-f -b size=4096'
         mount_opt: ''
+        outputdir: '/mnt/testdir'
