@@ -240,7 +240,7 @@ class Xfstests(Test):
         self.mkfs_opt = self.params.get('mkfs_opt', default='')
         self.mount_opt = self.params.get('mount_opt', default='')
         self.logdev_opt = self.params.get('logdev_opt', default='')
-        self.user_outputdir = self.params.get('outputdir', default='')
+        self.user_outputdir = self.params.get('outputdir', default='/mnt/testdir')
 
         # If there is an existing results directory then just clean that up before running the test
         if os.path.exists(f"{self.teststmpdir}/results"):
