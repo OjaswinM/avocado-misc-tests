@@ -161,7 +161,7 @@ class Xfstests(Test):
                  'gettext', 'libinih-dev', 'liburcu-dev', 'libblkid-dev',
                  'liblzo2-dev', 'zlib1g-dev', 'e2fslibs-dev', 'asciidoc',
                  'xmlto', 'libzstd-dev', 'libudev-dev', 'bc', 'dump', 'acl',
-                 'lvm2', 'sed'])
+                 'lvm2', 'sed', 'pkg-config'])
             if self.detected_distro.version in ['14']:
                 packages.extend(['libtool'])
             elif self.detected_distro.version in ['18', '20']:
